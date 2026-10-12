@@ -46,3 +46,4 @@ const APPS_SCRIPT_API_URL =
 - MLR: `ตารางผ่อนชำระ!C2`
 - Config: `WEB_CONFIG`
 - Rate / Spread / Tier: `WEB_RATE_TABLE`
+GitHub Pages deployment
