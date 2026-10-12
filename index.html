@@ -1,0 +1,4426 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+  <base target="_top">
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <title>
+    LOW PD / STEP Payment Calculator
+  </title>
+
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    rel="stylesheet">
+
+
+<style>
+
+:root {
+
+  --purple:
+    #594F74;
+
+  --purple2:
+    #635F98;
+
+  --purple3:
+    #786DA2;
+
+  --purpleSoft:
+    #F2F0F7;
+
+  --purpleSoft2:
+    #F9F8FB;
+
+  --goldSoft:
+    #FFF7DF;
+
+  --goldBorder:
+    #E9D493;
+
+  --green:
+    #287C4D;
+
+  --greenSoft:
+    #EAF6EE;
+
+  --cream:
+    #FFF6E5;
+
+  --bg:
+    #F5F6F9;
+
+  --white:
+    #FFFFFF;
+
+  --text:
+    #292633;
+
+  --muted:
+    #77717F;
+
+  --border:
+    #E4E1E8;
+
+  --danger:
+    #B63E49;
+
+  --shadow:
+    0 12px 36px
+    rgba(
+      31,
+      26,
+      45,
+      .065
+    );
+
+}
+
+
+* {
+  box-sizing:
+    border-box;
+}
+
+
+html {
+  scroll-behavior:
+    smooth;
+}
+
+
+body {
+
+  margin:
+    0;
+
+  min-height:
+    100vh;
+
+  color:
+    var(--text);
+
+  background:
+    radial-gradient(
+      circle at 5% 0%,
+      rgba(
+        99,
+        95,
+        152,
+        .08
+      ),
+      transparent 25%
+    ),
+    var(--bg);
+
+  font-family:
+    'Sarabun',
+    sans-serif;
+
+  -webkit-font-smoothing:
+    antialiased;
+
+}
+
+
+button,
+input {
+  font:
+    inherit;
+}
+
+
+button {
+  -webkit-tap-highlight-color:
+    transparent;
+}
+
+
+.hidden {
+  display:
+    none !important;
+}
+
+
+.container {
+
+  width:
+    100%;
+
+  max-width:
+    1420px;
+
+  margin:
+    0 auto;
+
+  padding-left:
+    24px;
+
+  padding-right:
+    24px;
+
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+
+  position:
+    relative;
+
+  overflow:
+    hidden;
+
+  color:
+    white;
+
+  background:
+    linear-gradient(
+      125deg,
+      #463D5D 0%,
+      var(--purple) 44%,
+      #71679B 100%
+    );
+
+}
+
+
+.hero::before {
+
+  content:
+    '';
+
+  position:
+    absolute;
+
+  width:
+    360px;
+
+  height:
+    360px;
+
+  right:
+    -150px;
+
+  top:
+    -220px;
+
+  border-radius:
+    50%;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      .05
+    );
+
+}
+
+
+.hero::after {
+
+  content:
+    '';
+
+  position:
+    absolute;
+
+  width:
+    220px;
+
+  height:
+    220px;
+
+  right:
+    190px;
+
+  bottom:
+    -175px;
+
+  border-radius:
+    50%;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      .045
+    );
+
+}
+
+
+.hero-inner {
+
+  position:
+    relative;
+
+  z-index:
+    2;
+
+  min-height:
+    176px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  gap:
+    24px;
+
+}
+
+
+.brand {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    17px;
+
+}
+
+
+.brand-icon {
+
+  width:
+    66px;
+
+  height:
+    66px;
+
+  min-width:
+    66px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      .24
+    );
+
+  border-radius:
+    19px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      .12
+    );
+
+  box-shadow:
+    0 15px 35px
+    rgba(
+      0,
+      0,
+      0,
+      .12
+    );
+
+  font-size:
+    24px;
+
+}
+
+
+.kicker {
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      .72
+    );
+
+  font-size:
+    10px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    2px;
+
+}
+
+
+.hero h1 {
+
+  margin:
+    5px 0 3px;
+
+  font-size:
+    30px;
+
+  line-height:
+    1.25;
+
+}
+
+
+.hero p {
+
+  margin:
+    0;
+
+  font-size:
+    13px;
+
+  opacity:
+    .82;
+
+}
+
+
+.hero-meta {
+
+  display:
+    flex;
+
+  flex-wrap:
+    wrap;
+
+  justify-content:
+    flex-end;
+
+  gap:
+    8px;
+
+}
+
+
+.hero-pill {
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  gap:
+    7px;
+
+  padding:
+    10px 14px;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      .22
+    );
+
+  border-radius:
+    999px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      .12
+    );
+
+  font-size:
+    11px;
+
+  font-weight:
+    700;
+
+  white-space:
+    nowrap;
+
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+main {
+
+  padding-top:
+    24px;
+
+  padding-bottom:
+    36px;
+
+}
+
+
+.notice {
+
+  padding:
+    15px 17px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    13px;
+
+  border:
+    1px solid
+    var(--goldBorder);
+
+  border-radius:
+    15px;
+
+  background:
+    var(--goldSoft);
+
+  color:
+    #71571D;
+
+}
+
+
+.notice-icon {
+
+  width:
+    42px;
+
+  height:
+    42px;
+
+  min-width:
+    42px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  border-radius:
+    12px;
+
+  background:
+    #F6E5AE;
+
+  color:
+    #88691B;
+
+}
+
+
+.notice strong {
+
+  display:
+    block;
+
+  font-size:
+    13px;
+
+}
+
+
+.notice span {
+
+  display:
+    block;
+
+  margin-top:
+    2px;
+
+  font-size:
+    11px;
+
+  line-height:
+    1.5;
+
+}
+
+
+/* =====================================================
+   COMMON CARD
+===================================================== */
+
+.card {
+
+  margin-top:
+    18px;
+
+  padding:
+    24px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    20px;
+
+  background:
+    white;
+
+  box-shadow:
+    var(--shadow);
+
+}
+
+
+.card-head {
+
+  display:
+    flex;
+
+  align-items:
+    flex-start;
+
+  justify-content:
+    space-between;
+
+  gap:
+    15px;
+
+  margin-bottom:
+    20px;
+
+}
+
+
+.section-label {
+
+  color:
+    var(--purple2);
+
+  font-size:
+    10px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    1.4px;
+
+}
+
+
+.card-head h2 {
+
+  margin:
+    4px 0 0;
+
+  font-size:
+    21px;
+
+}
+
+
+.card-head p {
+
+  margin:
+    4px 0 0;
+
+  color:
+    var(--muted);
+
+  font-size:
+    11px;
+
+  line-height:
+    1.5;
+
+}
+
+
+.step {
+
+  min-width:
+    42px;
+
+  height:
+    42px;
+
+  padding:
+    0 11px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  border-radius:
+    12px;
+
+  color:
+    var(--purple);
+
+  background:
+    var(--purpleSoft);
+
+  font-size:
+    10px;
+
+  font-weight:
+    700;
+
+}
+
+
+/* =====================================================
+   RATE TABLE
+===================================================== */
+
+.rate-summary {
+
+  margin-bottom:
+    14px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  gap:
+    12px;
+
+  flex-wrap:
+    wrap;
+
+}
+
+
+.mlr-card {
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  gap:
+    10px;
+
+  padding:
+    10px 13px;
+
+  border:
+    1px solid
+    var(--goldBorder);
+
+  border-radius:
+    13px;
+
+  background:
+    var(--goldSoft);
+
+}
+
+
+.mlr-icon {
+
+  width:
+    35px;
+
+  height:
+    35px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  border-radius:
+    10px;
+
+  color:
+    #8A6818;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      .78
+    );
+
+}
+
+
+.mlr-card span {
+
+  display:
+    block;
+
+  color:
+    #806928;
+
+  font-size:
+    9px;
+
+}
+
+
+.mlr-card strong {
+
+  display:
+    block;
+
+  margin-top:
+    1px;
+
+  color:
+    #433616;
+
+  font-size:
+    16px;
+
+}
+
+
+.source-chip {
+
+  padding:
+    8px 12px;
+
+  border-radius:
+    999px;
+
+  color:
+    var(--purple);
+
+  background:
+    var(--purpleSoft);
+
+  font-size:
+    9px;
+
+  font-weight:
+    700;
+
+}
+
+
+.rate-scenarios {
+
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+  gap:
+    16px;
+
+}
+
+
+.rate-panel {
+
+  overflow:
+    hidden;
+
+  border:
+    1px solid
+    #DCD7E4;
+
+  border-radius:
+    16px;
+
+  background:
+    #FFFFFF;
+
+}
+
+
+.rate-panel-head {
+
+  padding:
+    13px 15px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  gap:
+    10px;
+
+  border-bottom:
+    1px solid
+    #EAE6EF;
+
+  background:
+    linear-gradient(
+      135deg,
+      #F7F5FA,
+      #FFFFFF
+    );
+
+}
+
+
+.rate-panel-title {
+
+  color:
+    #312D38;
+
+  font-size:
+    15px;
+
+  font-weight:
+    700;
+
+}
+
+
+.rate-panel-tag {
+
+  padding:
+    6px 9px;
+
+  border-radius:
+    999px;
+
+  color:
+    var(--purple);
+
+  background:
+    var(--purpleSoft);
+
+  font-size:
+    9px;
+
+  font-weight:
+    700;
+
+}
+
+
+.rate-table-wrap {
+
+  width:
+    100%;
+
+  overflow-x:
+    auto;
+
+  -webkit-overflow-scrolling:
+    touch;
+
+}
+
+
+.rate-table {
+
+  width:
+    100%;
+
+  min-width:
+    640px;
+
+  border-collapse:
+    separate;
+
+  border-spacing:
+    0;
+
+}
+
+
+.rate-table th {
+
+  padding:
+    11px 10px;
+
+  color:
+    #5E566B;
+
+  background:
+    #F7F5FA;
+
+  border-bottom:
+    1px solid
+    #E6E1EB;
+
+  text-align:
+    center;
+
+  font-size:
+    10px;
+
+  font-weight:
+    700;
+
+  white-space:
+    nowrap;
+
+}
+
+
+.rate-table td {
+
+  padding:
+    11px 10px;
+
+  border-bottom:
+    1px solid
+    #F0EDF3;
+
+  text-align:
+    center;
+
+  font-size:
+    11px;
+
+  vertical-align:
+    middle;
+
+}
+
+
+.rate-table tbody tr:last-child td {
+
+  border-bottom:
+    0;
+
+}
+
+
+.rate-table tbody tr:nth-child(even) td {
+
+  background:
+    #FCFBFD;
+
+}
+
+
+.tier-pill {
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  min-width:
+    58px;
+
+  padding:
+    6px 10px;
+
+  border-radius:
+    999px;
+
+  color:
+    var(--purple);
+
+  background:
+    var(--purpleSoft);
+
+  font-size:
+    10px;
+
+  font-weight:
+    700;
+
+}
+
+
+.fixed-box,
+.spread-box,
+.actual-box {
+
+  display:
+    inline-block;
+
+  min-width:
+    90px;
+
+  padding:
+    7px 9px;
+
+  border-radius:
+    10px;
+
+  font-weight:
+    700;
+
+  white-space:
+    nowrap;
+
+}
+
+
+.fixed-box {
+
+  color:
+    #51495F;
+
+  background:
+    #F3F0F8;
+
+}
+
+
+.spread-box {
+
+  color:
+    #795C18;
+
+  background:
+    #FFF5DD;
+
+}
+
+
+.actual-box {
+
+  color:
+    #226343;
+
+  background:
+    var(--greenSoft);
+
+}
+
+
+.mobile-rate-list {
+
+  display:
+    none;
+
+}
+
+
+.mobile-rate-card {
+
+  padding:
+    12px;
+
+  border:
+    1px solid
+    #E7E3EB;
+
+  border-radius:
+    13px;
+
+  background:
+    white;
+
+}
+
+
+.mobile-rate-card +
+.mobile-rate-card {
+
+  margin-top:
+    9px;
+
+}
+
+
+.mobile-rate-top {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  gap:
+    10px;
+
+  margin-bottom:
+    10px;
+
+}
+
+
+.mobile-rate-tier {
+
+  color:
+    var(--purple);
+
+  font-size:
+    12px;
+
+  font-weight:
+    700;
+
+}
+
+
+.mobile-rate-label {
+
+  color:
+    var(--muted);
+
+  font-size:
+    9px;
+
+}
+
+
+.mobile-rate-grid {
+
+  display:
+    grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:
+    8px;
+
+}
+
+
+.mobile-rate-item {
+
+  padding:
+    9px 10px;
+
+  border-radius:
+    10px;
+
+  background:
+    #F9F8FB;
+
+}
+
+
+.mobile-rate-item span {
+
+  display:
+    block;
+
+  color:
+    var(--muted);
+
+  font-size:
+    8px;
+
+}
+
+
+.mobile-rate-item strong {
+
+  display:
+    block;
+
+  margin-top:
+    3px;
+
+  font-size:
+    11px;
+
+}
+
+
+/* =====================================================
+   INPUT
+===================================================== */
+
+.input-grid {
+
+  display:
+    grid;
+
+  grid-template-columns:
+    180px
+    minmax(
+      230px,
+      1fr
+    )
+    minmax(
+      230px,
+      1fr
+    )
+    190px;
+
+  gap:
+    16px;
+
+  align-items:
+    end;
+
+}
+
+
+.input-mlr {
+
+  padding:
+    14px;
+
+  border:
+    1px solid
+    var(--goldBorder);
+
+  border-radius:
+    13px;
+
+  background:
+    var(--goldSoft);
+
+}
+
+
+.input-mlr span {
+
+  display:
+    block;
+
+  color:
+    #7A6224;
+
+  font-size:
+    9px;
+
+  font-weight:
+    600;
+
+}
+
+
+.input-mlr strong {
+
+  display:
+    block;
+
+  margin-top:
+    3px;
+
+  font-size:
+    23px;
+
+}
+
+
+.input-mlr small {
+
+  display:
+    block;
+
+  margin-top:
+    3px;
+
+  color:
+    #8B753B;
+
+  font-size:
+    9px;
+
+}
+
+
+.form-group label {
+
+  display:
+    block;
+
+  margin-bottom:
+    7px;
+
+  font-size:
+    12px;
+
+  font-weight:
+    600;
+
+}
+
+
+.input-wrap {
+
+  position:
+    relative;
+
+}
+
+
+.input-wrap i,
+.input-wrap span {
+
+  position:
+    absolute;
+
+  left:
+    14px;
+
+  top:
+    50%;
+
+  transform:
+    translateY(
+      -50%
+    );
+
+  color:
+    #978F9E;
+
+  pointer-events:
+    none;
+
+}
+
+
+input,
+select {
+
+  width:
+    100%;
+
+  height:
+    50px;
+
+  padding:
+    0 14px
+    0 42px;
+
+  border:
+    1px solid
+    #DCD7E2;
+
+  border-radius:
+    12px;
+
+  outline:
+    none;
+
+  color:
+    var(--text);
+
+  background:
+    white;
+
+  font-family:
+    inherit;
+
+  font-size:
+    16px;
+
+  font-weight:
+    600;
+
+}
+
+
+input:focus,
+select:focus {
+
+  border-color:
+    var(--purple2);
+
+  box-shadow:
+    0 0 0 4px
+    rgba(
+      99,
+      95,
+      152,
+      .08
+    );
+
+}
+
+
+select {
+
+  padding:
+    0 42px
+    0 42px;
+
+  border:
+    1px solid
+    #DCD7E2;
+
+  border-radius:
+    12px;
+
+  outline:
+    none;
+
+  color:
+    var(--text);
+
+  background:
+    white;
+
+  font-family:
+    inherit;
+
+  font-size:
+    15px;
+
+  font-weight:
+    600;
+
+  cursor:
+    pointer;
+
+  appearance:
+    auto;
+
+}
+
+
+.field-note {
+
+  min-height:
+    14px;
+
+  margin-top:
+    5px;
+
+  color:
+    var(--muted);
+
+  font-size:
+    10px;
+
+}
+
+
+.calc-btn {
+
+  width:
+    100%;
+
+  height:
+    50px;
+
+  border:
+    0;
+
+  border-radius:
+    12px;
+
+  color:
+    white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple),
+      var(--purple3)
+    );
+
+  font-family:
+    inherit;
+
+  font-size:
+    13px;
+
+  font-weight:
+    700;
+
+  cursor:
+    pointer;
+
+  box-shadow:
+    0 8px 20px
+    rgba(
+      89,
+      79,
+      116,
+      .25
+    );
+
+}
+
+
+.calc-btn:disabled {
+
+  opacity:
+    .55;
+
+  cursor:
+    wait;
+
+}
+
+
+.calc-btn i {
+
+  margin-right:
+    6px;
+
+}
+
+
+.error {
+
+  margin-top:
+    14px;
+
+  padding:
+    12px 14px;
+
+  border:
+    1px solid
+    #F1C8CE;
+
+  border-radius:
+    11px;
+
+  color:
+    var(--danger);
+
+  background:
+    #FFF2F4;
+
+  font-size:
+    12px;
+
+}
+
+
+/* =====================================================
+   RESULT
+===================================================== */
+
+.result-section {
+
+  margin-top:
+    22px;
+
+}
+
+
+.result-head {
+
+  margin-bottom:
+    13px;
+
+  display:
+    flex;
+
+  align-items:
+    flex-end;
+
+  justify-content:
+    space-between;
+
+  gap:
+    12px;
+
+}
+
+
+.result-head h2 {
+
+  margin:
+    4px 0 0;
+
+  font-size:
+    21px;
+
+}
+
+
+.result-head p {
+
+  margin:
+    4px 0 0;
+
+  color:
+    var(--muted);
+
+  font-size:
+    11px;
+
+}
+
+
+.result-tier {
+
+  padding:
+    8px 12px;
+
+  border-radius:
+    999px;
+
+  color:
+    var(--purple);
+
+  background:
+    var(--purpleSoft);
+
+  font-size:
+    10px;
+
+  font-weight:
+    700;
+
+}
+
+
+.results {
+
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+  gap:
+    16px;
+
+}
+
+
+.offer {
+
+  overflow:
+    hidden;
+
+  border:
+    1px solid
+    #D5CFDC;
+
+  border-radius:
+    15px;
+
+  background:
+    white;
+
+  box-shadow:
+    0 7px 24px
+    rgba(
+      35,
+      30,
+      48,
+      .055
+    );
+
+}
+
+
+.offer-title {
+
+  padding:
+    13px 15px;
+
+  color:
+    white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple),
+      var(--purple2)
+    );
+
+  text-align:
+    center;
+
+  font-size:
+    14px;
+
+  font-weight:
+    700;
+
+}
+
+
+.offer-info {
+
+  padding:
+    8px 12px;
+
+  display:
+    flex;
+
+  justify-content:
+    space-between;
+
+  gap:
+    8px;
+
+  color:
+    #6C6475;
+
+  background:
+    #F8F7FA;
+
+  font-size:
+    9px;
+
+}
+
+
+.offer-table-wrap {
+
+  width:
+    100%;
+
+  overflow-x:
+    auto;
+
+}
+
+
+.offer-table {
+
+  width:
+    100%;
+
+  min-width:
+    560px;
+
+  border-collapse:
+    collapse;
+
+}
+
+
+.offer-table th {
+
+  padding:
+    10px 8px;
+
+  border:
+    1px solid
+    #E0D9C2;
+
+  background:
+    var(--cream);
+
+  text-align:
+    center;
+
+  font-size:
+    10px;
+
+}
+
+
+.offer-table td {
+
+  padding:
+    12px 10px;
+
+  border:
+    1px solid
+    #E3E1E6;
+
+  background:
+    #FFFFFF;
+
+  text-align:
+    center;
+
+  font-size:
+    11px;
+
+}
+
+
+.offer-table tbody tr:first-child td {
+
+  background:
+    #F7FBF8;
+
+}
+
+
+.payment {
+
+  color:
+    var(--green);
+
+  font-size:
+    15px;
+
+  font-weight:
+    700;
+
+}
+
+
+.empty {
+
+  padding:
+    38px 20px;
+
+  border:
+    1px dashed
+    #D5D1DA;
+
+  border-radius:
+    15px;
+
+  background:
+    white;
+
+  color:
+    var(--muted);
+
+  text-align:
+    center;
+
+}
+
+
+.empty-icon {
+
+  width:
+    52px;
+
+  height:
+    52px;
+
+  margin:
+    0 auto 9px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  border-radius:
+    16px;
+
+  color:
+    var(--purple2);
+
+  background:
+    var(--purpleSoft);
+
+}
+
+
+.empty strong {
+
+  display:
+    block;
+
+  color:
+    var(--text);
+
+  font-size:
+    13px;
+
+}
+
+
+.empty span {
+
+  display:
+    block;
+
+  margin-top:
+    4px;
+
+  font-size:
+    10px;
+
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading-overlay {
+
+  position:
+    fixed;
+
+  inset:
+    0;
+
+  z-index:
+    9999;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  background:
+    rgba(
+      246,
+      247,
+      250,
+      .91
+    );
+
+  backdrop-filter:
+    blur(
+      6px
+    );
+
+}
+
+
+.loading-box {
+
+  width:
+    220px;
+
+  padding:
+    27px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    18px;
+
+  background:
+    white;
+
+  box-shadow:
+    var(--shadow);
+
+  text-align:
+    center;
+
+}
+
+
+.loader {
+
+  display:
+    flex;
+
+  justify-content:
+    center;
+
+  gap:
+    7px;
+
+  margin-bottom:
+    12px;
+
+}
+
+
+.loader span {
+
+  width:
+    8px;
+
+  height:
+    8px;
+
+  border-radius:
+    50%;
+
+  background:
+    var(--purple2);
+
+  animation:
+    bounce
+    1.2s
+    infinite
+    ease-in-out;
+
+}
+
+
+.loader span:nth-child(2) {
+  animation-delay:
+    .15s;
+}
+
+
+.loader span:nth-child(3) {
+  animation-delay:
+    .3s;
+}
+
+
+@keyframes bounce {
+
+  0%,
+  80%,
+  100% {
+
+    opacity:
+      .4;
+
+    transform:
+      scale(
+        .7
+      );
+
+  }
+
+
+  40% {
+
+    opacity:
+      1;
+
+    transform:
+      scale(
+        1.2
+      );
+
+  }
+
+}
+
+
+/* =====================================================
+   TABLET / MOBILE
+===================================================== */
+
+@media(
+  max-width:
+  1050px
+) {
+
+  .rate-scenarios {
+
+    grid-template-columns:
+      1fr;
+
+  }
+
+
+  .input-grid {
+
+    grid-template-columns:
+      170px 1fr 1fr;
+
+  }
+
+
+  .button-cell {
+
+    grid-column:
+      1 / -1;
+
+  }
+
+
+  .calc-btn {
+
+    max-width:
+      300px;
+
+  }
+
+}
+
+
+@media(
+  max-width:
+  760px
+) {
+
+  .container {
+
+    padding-left:
+      12px;
+
+    padding-right:
+      12px;
+
+  }
+
+
+  .hero {
+
+    border-radius:
+      0 0 24px 24px;
+
+  }
+
+
+  .hero-inner {
+
+    min-height:
+      auto;
+
+    padding-top:
+      22px;
+
+    padding-bottom:
+      24px;
+
+    flex-direction:
+      column;
+
+    align-items:
+      flex-start;
+
+    justify-content:
+      center;
+
+    gap:
+      14px;
+
+  }
+
+
+  .brand {
+
+    align-items:
+      flex-start;
+
+    gap:
+      12px;
+
+  }
+
+
+  .brand-icon {
+
+    width:
+      52px;
+
+    height:
+      52px;
+
+    min-width:
+      52px;
+
+    border-radius:
+      15px;
+
+    font-size:
+      20px;
+
+  }
+
+
+  .hero h1 {
+
+    font-size:
+      22px;
+
+  }
+
+
+  .hero p {
+
+    font-size:
+      11px;
+
+  }
+
+
+  .hero-meta {
+
+    justify-content:
+      flex-start;
+
+  }
+
+
+  main {
+
+    padding-top:
+      14px;
+
+  }
+
+
+  .notice {
+
+    align-items:
+      flex-start;
+
+    padding:
+      13px;
+
+  }
+
+
+  .card {
+
+    margin-top:
+      14px;
+
+    padding:
+      16px;
+
+    border-radius:
+      17px;
+
+  }
+
+
+  .card-head {
+
+    margin-bottom:
+      16px;
+
+  }
+
+
+  .card-head h2 {
+
+    font-size:
+      18px;
+
+  }
+
+
+  .card-head p {
+
+    font-size:
+      10px;
+
+  }
+
+
+  .step {
+
+    min-width:
+      36px;
+
+    height:
+      36px;
+
+  }
+
+
+  .rate-table-wrap {
+
+    display:
+      none;
+
+  }
+
+
+  .mobile-rate-list {
+
+    display:
+      block;
+
+  }
+
+
+  .input-grid {
+
+    grid-template-columns:
+      1fr;
+
+    gap:
+      12px;
+
+  }
+
+
+  .button-cell {
+
+    grid-column:
+      auto;
+
+  }
+
+
+  .calc-btn {
+
+    max-width:
+      none;
+
+    height:
+      52px;
+
+  }
+
+
+  .results {
+
+    grid-template-columns:
+      1fr;
+
+  }
+
+
+  .result-head {
+
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+
+  }
+
+
+  .offer-info {
+
+    flex-direction:
+      column;
+
+  }
+
+}
+
+
+@media(
+  max-width:
+  390px
+) {
+
+  .mobile-rate-grid {
+
+    grid-template-columns:
+      1fr;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<header class="hero">
+
+  <div class="container hero-inner">
+
+
+    <div class="brand">
+
+
+      <div class="brand-icon">
+
+        <i class="fa-solid fa-calculator"></i>
+
+      </div>
+
+
+      <div>
+
+        <div class="kicker">
+          PAYMENT CALCULATOR
+        </div>
+
+        <h1>
+          SME Freedom LOW PD / STEP
+        </h1>
+
+        <p>
+          ตารางอัตราดอกเบี้ย + เครื่องคำนวณค่างวด Q4/2569
+        </p>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="hero-meta">
+
+      <div class="hero-pill">
+
+        <i class="fa-solid fa-building-columns"></i>
+
+        MLR
+        <span id="heroMlr">
+          -
+        </span>
+
+      </div>
+
+
+      <div class="hero-pill">
+
+        <i class="fa-solid fa-percent"></i>
+
+        Buffer
+        <span id="heroBuffer">
+          -
+        </span>
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+</header>
+
+
+
+<main class="container">
+
+
+  <!-- =====================================================
+       DISCLAIMER
+  ====================================================== -->
+
+  <section class="notice">
+
+
+    <div class="notice-icon">
+
+      <i class="fa-solid fa-circle-info"></i>
+
+    </div>
+
+
+    <div>
+
+      <strong>
+        ค่างวดที่แสดงเป็นเพียงการประมาณการ
+      </strong>
+
+      <span>
+        และอาจแตกต่างจากค่างวดจริง ตามเงื่อนไขและหลักเกณฑ์ของธนาคาร
+      </span>
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- =====================================================
+       RATE TABLE
+  ====================================================== -->
+
+  <section class="card">
+
+
+    <div class="card-head">
+
+
+      <div>
+
+        <div class="section-label">
+          INTEREST RATE
+        </div>
+
+        <h2>
+          ตารางอัตราดอกเบี้ย Q4/2569
+        </h2>
+
+        <p>
+          ดึงข้อมูลโดยตรงจาก WEB_RATE_TABLE และคำนวณอัตราดอกเบี้ยจริงจาก MLR ปัจจุบัน
+        </p>
+
+      </div>
+
+
+      <div class="step">
+        RATE
+      </div>
+
+
+    </div>
+
+
+
+    <div class="rate-summary">
+
+
+      <div class="mlr-card">
+
+        <div class="mlr-icon">
+
+          <i class="fa-solid fa-building-columns"></i>
+
+        </div>
+
+        <div>
+
+          <span>
+            MLR ปัจจุบัน
+          </span>
+
+          <strong id="rateMlr">
+            -
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <div
+        id="rateSourceChip"
+        class="source-chip">
+
+        Source: WEB_RATE_TABLE
+
+      </div>
+
+
+    </div>
+
+
+
+    <div
+      id="rateOverviewContainer">
+
+      <div class="empty">
+
+        <div class="empty-icon">
+
+          <i class="fa-solid fa-spinner fa-spin"></i>
+
+        </div>
+
+        <strong>
+          กำลังโหลดตารางอัตราดอกเบี้ย
+        </strong>
+
+      </div>
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- =====================================================
+       INPUT
+  ====================================================== -->
+
+  <section class="card">
+
+
+    <div class="card-head">
+
+
+      <div>
+
+        <div class="section-label">
+          LOAN INPUT
+        </div>
+
+        <h2>
+          ข้อมูลสำหรับคำนวณ
+        </h2>
+
+        <p>
+          เซลกรอกเพียงวงเงินสินเชื่อและยอดซื้อประกัน
+        </p>
+
+      </div>
+
+
+      <div class="step">
+        01
+      </div>
+
+
+    </div>
+
+
+
+    <div class="input-grid">
+
+
+      <div class="input-mlr">
+
+        <span>
+          MLR ปัจจุบัน
+        </span>
+
+        <strong id="inputMlr">
+          -
+        </strong>
+
+        <small id="inputVersion">
+          ดึงจาก Google Sheet
+        </small>
+
+      </div>
+
+
+
+      <div class="form-group">
+
+        <label for="loanAmount">
+          วงเงินสินเชื่อ (บาท)
+        </label>
+
+        <div class="input-wrap">
+
+          <span>
+            ฿
+          </span>
+
+          <input
+            id="loanAmount"
+            type="text"
+            inputmode="numeric"
+            value="5,000,000"
+            autocomplete="off"
+            oninput="formatMoneyInput(this)">
+
+        </div>
+
+      </div>
+
+
+
+      <div class="form-group">
+
+        <label for="insuranceAmount">
+          ซื้อประกันเป็นจำนวน (บาท)
+        </label>
+
+        <div class="input-wrap">
+
+          <i class="fa-solid fa-shield-heart"></i>
+
+          <select
+            id="insuranceAmount"
+            aria-label="เลือกยอดซื้อประกัน">
+
+            <option value="30000" selected>
+              ขั้นต่ำ 30,000 บาท
+            </option>
+
+            <option value="50000">
+              ตั้งแต่ 50,000 บาทขึ้นไป
+            </option>
+
+            <option value="100000">
+              ตั้งแต่ 100,000 บาทขึ้นไป
+            </option>
+
+          </select>
+
+        </div>
+
+        <div
+          id="insuranceHint"
+          class="field-note">
+
+          เลือกตามยอดซื้อประกันของลูกค้า
+
+        </div>
+
+      </div>
+
+
+
+      <div class="button-cell">
+
+        <button
+          id="calcBtn"
+          class="calc-btn"
+          type="button"
+          onclick="calculateNow()">
+
+          <i class="fa-solid fa-calculator"></i>
+
+          คำนวณค่างวด
+
+        </button>
+
+      </div>
+
+
+    </div>
+
+
+
+    <div
+      id="errorBox"
+      class="error hidden">
+    </div>
+
+
+  </section>
+
+
+
+  <!-- =====================================================
+       RESULT
+  ====================================================== -->
+
+  <section class="result-section">
+
+
+    <div class="result-head">
+
+
+      <div>
+
+        <div class="section-label">
+          PAYMENT RESULT
+        </div>
+
+        <h2>
+          ผลคำนวณ
+        </h2>
+
+        <p>
+          แสดง Low PD 2, 3 และ Low PD 1 ตามยอดซื้อประกันที่กรอก
+        </p>
+
+      </div>
+
+
+      <div
+        id="resultTier"
+        class="result-tier hidden">
+      </div>
+
+
+    </div>
+
+
+
+    <div
+      id="emptyResult"
+      class="empty">
+
+      <div class="empty-icon">
+
+        <i class="fa-solid fa-table-list"></i>
+
+      </div>
+
+      <strong>
+        พร้อมคำนวณ
+      </strong>
+
+      <span>
+        กรอกข้อมูลแล้วกด “คำนวณค่างวด”
+      </span>
+
+    </div>
+
+
+
+    <div
+      id="results"
+      class="results hidden">
+    </div>
+
+
+  </section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     LOADING
+===================================================== -->
+
+<div
+  id="loadingOverlay"
+  class="loading-overlay">
+
+
+  <div class="loading-box">
+
+
+    <div class="loader">
+
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </div>
+
+
+    <strong>
+      กำลังโหลดข้อมูลล่าสุด
+    </strong>
+
+
+  </div>
+
+
+</div>
+
+
+
+<script>
+
+let PAGE_DATA = null;
+
+
+/* =====================================================
+   GITHUB PAGES API CONFIG
+===================================================== */
+
+/*
+ * ใส่ Apps Script Web App URL ที่ลงท้ายด้วย /exec
+ * ตัวอย่าง:
+ * https://script.google.com/macros/s/AKfycbxxxxxxxx/exec
+ */
+const APPS_SCRIPT_API_URL =
+  'PASTE_YOUR_APPS_SCRIPT_EXEC_URL_HERE';
+
+
+function apiCall(
+  action,
+  params
+) {
+
+  params =
+    params || {};
+
+
+  if (
+    !APPS_SCRIPT_API_URL ||
+    APPS_SCRIPT_API_URL.indexOf(
+      'PASTE_YOUR_'
+    ) === 0
+  ) {
+
+    return Promise.reject(
+      new Error(
+        'กรุณาใส่ Apps Script /exec URL ใน APPS_SCRIPT_API_URL'
+      )
+    );
+
+  }
+
+
+  return new Promise(
+    function(
+      resolve,
+      reject
+    ) {
+
+      const callbackName =
+        '__lowpd_' +
+        Date.now() +
+        '_' +
+        Math.floor(
+          Math.random() *
+          1000000
+        );
+
+
+      const script =
+        document.createElement(
+          'script'
+        );
+
+
+      const timer =
+        setTimeout(
+          function() {
+
+            cleanup();
+
+            reject(
+              new Error(
+                'เชื่อมต่อ Apps Script ไม่สำเร็จ'
+              )
+            );
+
+          },
+          20000
+        );
+
+
+      function cleanup() {
+
+        clearTimeout(
+          timer
+        );
+
+
+        try {
+          delete window[
+            callbackName
+          ];
+        }
+        catch (e) {
+          window[
+            callbackName
+          ] =
+            undefined;
+        }
+
+
+        if (
+          script.parentNode
+        ) {
+          script.parentNode
+            .removeChild(
+              script
+            );
+        }
+
+      }
+
+
+      window[
+        callbackName
+      ] =
+        function(
+          payload
+        ) {
+
+          cleanup();
+
+
+          if (
+            payload &&
+            payload.ok
+          ) {
+
+            resolve(
+              payload.data
+            );
+
+          }
+          else {
+
+            reject(
+              new Error(
+                payload &&
+                payload.error
+                  ? payload.error
+                  : 'เกิดข้อผิดพลาดจาก Apps Script'
+              )
+            );
+
+          }
+
+        };
+
+
+      const query =
+        new URLSearchParams();
+
+
+      query.set(
+        'api',
+        action
+      );
+
+
+      query.set(
+        'callback',
+        callbackName
+      );
+
+
+      Object.keys(
+        params
+      ).forEach(
+        function(key) {
+
+          query.set(
+            key,
+            params[key]
+          );
+
+        }
+      );
+
+
+      script.src =
+        APPS_SCRIPT_API_URL +
+        (
+          APPS_SCRIPT_API_URL
+            .indexOf('?') === -1
+              ? '?'
+              : '&'
+        ) +
+        query.toString();
+
+
+      script.async =
+        true;
+
+
+      script.onerror =
+        function() {
+
+          cleanup();
+
+          reject(
+            new Error(
+              'โหลด Apps Script API ไม่สำเร็จ'
+            )
+          );
+
+        };
+
+
+      document.body
+        .appendChild(
+          script
+        );
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+window.addEventListener(
+  'DOMContentLoaded',
+  function() {
+
+    bindEnterKeys();
+
+    loadPageData();
+
+  }
+);
+
+
+
+/* =====================================================
+   LOAD PAGE DATA
+===================================================== */
+
+function loadPageData() {
+
+  apiCall(
+    'pageData'
+  )
+    .then(
+      function(data) {
+
+        PAGE_DATA =
+          data || {};
+
+
+        renderPageMeta(
+          PAGE_DATA
+        );
+
+
+        renderRateOverview(
+          PAGE_DATA.rateOverview ||
+          []
+        );
+
+
+        setLoading(
+          false
+        );
+
+      }
+    )
+
+    .catch(
+      function(error) {
+
+        setLoading(
+          false
+        );
+
+
+        showError(
+          getErrorMessage(
+            error
+          )
+        );
+
+
+        document
+          .getElementById(
+            'rateOverviewContainer'
+          )
+          .innerHTML = `
+
+            <div class="empty">
+
+              <strong>
+                ไม่สามารถโหลดตารางอัตราดอกเบี้ยได้
+              </strong>
+
+              <span>
+                ${escapeHtml(
+                  getErrorMessage(
+                    error
+                  )
+                )}
+              </span>
+
+            </div>
+
+          `;
+
+      }
+    );
+
+}
+
+
+
+function renderPageMeta(data) {
+
+  const mlrText =
+    formatPercent(
+      data.mlrPercent,
+      3
+    );
+
+
+  const bufferText =
+    formatPercent(
+      data.bufferPercent,
+      3
+    );
+
+
+  setText(
+    'heroMlr',
+    mlrText
+  );
+
+
+  setText(
+    'rateMlr',
+    mlrText
+  );
+
+
+  setText(
+    'inputMlr',
+    mlrText
+  );
+
+
+  setText(
+    'heroBuffer',
+    bufferText
+  );
+
+
+  setText(
+    'inputVersion',
+    (
+      data.version ||
+      'Q4/2569'
+    ) +
+    ' • ดึง MLR จาก Google Sheet'
+  );
+
+
+  setText(
+    'insuranceHint',
+    'เลือกตามยอดซื้อประกันของลูกค้า'
+  );
+
+}
+
+
+
+/* =====================================================
+   RATE OVERVIEW
+===================================================== */
+
+function renderRateOverview(
+  scenarios
+) {
+
+  const container =
+    document
+      .getElementById(
+        'rateOverviewContainer'
+      );
+
+
+  if (
+    !Array.isArray(
+      scenarios
+    ) ||
+    !scenarios.length
+  ) {
+
+    container.innerHTML = `
+
+      <div class="empty">
+
+        <strong>
+          ไม่พบข้อมูลใน WEB_RATE_TABLE
+        </strong>
+
+        <span>
+          กรุณาตรวจสอบว่า Active = TRUE และมี Scenario LOW23 / LOW1
+        </span>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML = `
+
+    <div class="rate-scenarios">
+
+      ${scenarios
+        .map(
+          function(
+            scenario
+          ) {
+
+            return renderRateScenario(
+              scenario
+            );
+
+          }
+        )
+        .join('')
+      }
+
+    </div>
+
+  `;
+
+}
+
+
+
+function renderRateScenario(
+  scenario
+) {
+
+  const tiers =
+    Array.isArray(
+      scenario.tiers
+    )
+      ? scenario.tiers
+      : [];
+
+
+  const desktopRows =
+    tiers
+      .map(
+        function(tier) {
+
+          const first =
+            tier.periods &&
+            tier.periods[0]
+              ? tier.periods[0]
+              : null;
+
+
+          const second =
+            tier.periods &&
+            tier.periods[1]
+              ? tier.periods[1]
+              : null;
+
+
+          return `
+
+            <tr>
+
+              <td>
+
+                <span class="tier-pill">
+
+                  ${escapeHtml(
+                    tier.insuranceTier
+                  )}
+
+                </span>
+
+              </td>
+
+
+              <td>
+
+                ${escapeHtml(
+                  tier.insuranceLabel
+                )}
+
+              </td>
+
+
+              <td>
+
+                <span class="fixed-box">
+
+                  ${
+                    first
+                      ? formatPercent(
+                          first.actualRatePercent,
+                          3
+                        )
+                      : '-'
+                  }
+
+                </span>
+
+              </td>
+
+
+              <td>
+
+                <span class="spread-box">
+
+                  ${
+                    second
+                      ? escapeHtml(
+                          second.rateLabel
+                        )
+                      : '-'
+                  }
+
+                </span>
+
+              </td>
+
+
+              <td>
+
+                <span class="actual-box">
+
+                  ${
+                    second
+                      ? formatPercent(
+                          second.actualRatePercent,
+                          3
+                        )
+                      : '-'
+                  }
+
+                </span>
+
+              </td>
+
+            </tr>
+
+          `;
+
+        }
+      )
+      .join('');
+
+
+  const mobileRows =
+    tiers
+      .map(
+        function(tier) {
+
+          const first =
+            tier.periods &&
+            tier.periods[0]
+              ? tier.periods[0]
+              : null;
+
+
+          const second =
+            tier.periods &&
+            tier.periods[1]
+              ? tier.periods[1]
+              : null;
+
+
+          return `
+
+            <article class="mobile-rate-card">
+
+
+              <div class="mobile-rate-top">
+
+                <div class="mobile-rate-tier">
+
+                  ${escapeHtml(
+                    tier.insuranceTier
+                  )}
+
+                </div>
+
+
+                <div class="mobile-rate-label">
+
+                  ${escapeHtml(
+                    tier.insuranceLabel
+                  )}
+
+                </div>
+
+              </div>
+
+
+              <div class="mobile-rate-grid">
+
+
+                <div class="mobile-rate-item">
+
+                  <span>
+                    เดือน 1-12
+                  </span>
+
+                  <strong>
+                    ${
+                      first
+                        ? formatPercent(
+                            first.actualRatePercent,
+                            3
+                          )
+                        : '-'
+                    }
+                  </strong>
+
+                </div>
+
+
+                <div class="mobile-rate-item">
+
+                  <span>
+                    เดือน 13-84
+                  </span>
+
+                  <strong>
+                    ${
+                      second
+                        ? escapeHtml(
+                            second.rateLabel
+                          )
+                        : '-'
+                    }
+                  </strong>
+
+                </div>
+
+
+                <div class="mobile-rate-item">
+
+                  <span>
+                    ดอกเบี้ยจริงเดือน 13-84
+                  </span>
+
+                  <strong>
+                    ${
+                      second
+                        ? formatPercent(
+                            second.actualRatePercent,
+                            3
+                          )
+                        : '-'
+                    }
+                  </strong>
+
+                </div>
+
+
+                <div class="mobile-rate-item">
+
+                  <span>
+                    MLR
+                  </span>
+
+                  <strong>
+                    ${
+                      PAGE_DATA
+                        ? formatPercent(
+                            PAGE_DATA.mlrPercent,
+                            3
+                          )
+                        : '-'
+                    }
+                  </strong>
+
+                </div>
+
+
+              </div>
+
+
+            </article>
+
+          `;
+
+        }
+      )
+      .join('');
+
+
+  return `
+
+    <article class="rate-panel">
+
+
+      <div class="rate-panel-head">
+
+        <div class="rate-panel-title">
+
+          ${escapeHtml(
+            scenario.scenarioName
+          )}
+
+        </div>
+
+
+        <div class="rate-panel-tag">
+
+          ${tiers.length}
+          ระดับประกัน
+
+        </div>
+
+      </div>
+
+
+      <div class="rate-table-wrap">
+
+        <table class="rate-table">
+
+          <thead>
+
+            <tr>
+
+              <th>
+                Insurance Tier
+              </th>
+
+              <th>
+                ยอดซื้อประกัน
+              </th>
+
+              <th>
+                เดือน 1-12
+              </th>
+
+              <th>
+                เดือน 13-84
+              </th>
+
+              <th>
+                ดอกเบี้ยจริง 13-84
+              </th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+
+            ${desktopRows}
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+
+      <div class="mobile-rate-list">
+
+        ${mobileRows}
+
+      </div>
+
+
+    </article>
+
+  `;
+
+}
+
+
+
+/* =====================================================
+   CALCULATE
+===================================================== */
+
+function calculateNow() {
+
+  hideError();
+
+
+  const loan =
+    parseMoney(
+      document
+        .getElementById(
+          'loanAmount'
+        )
+        .value
+    );
+
+
+  const insurance =
+    Number(
+      document
+        .getElementById(
+          'insuranceAmount'
+        )
+        .value
+    );
+
+
+  if (
+    !(loan > 0)
+  ) {
+
+    showError(
+      'กรุณาระบุวงเงินสินเชื่อ'
+    );
+
+    return;
+
+  }
+
+
+  const minInsurance =
+    PAGE_DATA &&
+    PAGE_DATA.minInsurance
+      ? Number(
+          PAGE_DATA.minInsurance
+        )
+      : 30000;
+
+
+  if (
+    insurance <
+    minInsurance
+  ) {
+
+    showError(
+      'กรุณาซื้อประกันขั้นต่ำ ' +
+      formatMoney(
+        minInsurance
+      ) +
+      ' บาท'
+    );
+
+    return;
+
+  }
+
+
+  const btn =
+    document
+      .getElementById(
+        'calcBtn'
+      );
+
+
+  btn.disabled =
+    true;
+
+
+  btn.innerHTML =
+    '<i class="fa-solid fa-spinner fa-spin"></i> กำลังคำนวณ...';
+
+
+  apiCall(
+    'calculate',
+    {
+
+      loanAmount:
+        loan,
+
+      insuranceAmount:
+        insurance
+
+    }
+  )
+    .then(
+      function(result) {
+
+        btn.disabled =
+          false;
+
+
+        btn.innerHTML =
+          '<i class="fa-solid fa-calculator"></i> คำนวณค่างวด';
+
+
+        renderResults(
+          result
+        );
+
+      }
+    )
+    .catch(
+      function(error) {
+
+        btn.disabled =
+          false;
+
+
+        btn.innerHTML =
+          '<i class="fa-solid fa-calculator"></i> คำนวณค่างวด';
+
+
+        showError(
+          getErrorMessage(
+            error
+          )
+        );
+
+      }
+    );
+
+}
+
+
+
+/* =====================================================
+   RESULT
+===================================================== */
+
+function renderResults(
+  result
+) {
+
+  const offers =
+    result &&
+    Array.isArray(
+      result.offers
+    )
+      ? result.offers
+      : [];
+
+
+  if (!offers.length) {
+
+    showError(
+      'ไม่พบผลคำนวณ'
+    );
+
+    return;
+
+  }
+
+
+  document
+    .getElementById(
+      'emptyResult'
+    )
+    .classList
+    .add(
+      'hidden'
+    );
+
+
+  const results =
+    document
+      .getElementById(
+        'results'
+      );
+
+
+  results.classList
+    .remove(
+      'hidden'
+    );
+
+
+  results.innerHTML =
+    offers
+      .map(
+        function(offer) {
+
+          return renderOffer(
+            offer,
+            result
+          );
+
+        }
+      )
+      .join('');
+
+
+  const tier =
+    offers[0]
+      .insuranceTier ||
+    '-';
+
+
+  const tierBox =
+    document
+      .getElementById(
+        'resultTier'
+      );
+
+
+  tierBox.textContent =
+    'Insurance Tier: ' +
+    tier;
+
+
+  tierBox.classList
+    .remove(
+      'hidden'
+    );
+
+
+  if (
+    window.innerWidth <=
+    760
+  ) {
+
+    document
+      .querySelector(
+        '.result-section'
+      )
+      .scrollIntoView({
+
+        behavior:
+          'smooth',
+
+        block:
+          'start'
+
+      });
+
+  }
+
+}
+
+
+
+function renderOffer(
+  offer,
+  result
+) {
+
+  const rows =
+    offer.periods
+      .map(
+        function(period) {
+
+          return `
+
+            <tr>
+
+              <td>
+
+                เดือนที่
+                ${period.startMonth}-${period.endMonth}
+
+              </td>
+
+
+              <td>
+
+                ${escapeHtml(
+                  period.rateLabel
+                )}
+
+              </td>
+
+
+              <td>
+
+                ${formatPercent(
+                  period.actualRatePercent,
+                  3
+                )}
+
+              </td>
+
+
+              <td class="payment">
+
+                ${formatMoney(
+                  period.payment
+                )}
+
+              </td>
+
+            </tr>
+
+          `;
+
+        }
+      )
+      .join('');
+
+
+  return `
+
+    <article class="offer">
+
+
+      <div class="offer-title">
+
+        ${escapeHtml(
+          offer.scenarioName
+        )}
+
+      </div>
+
+
+      <div class="offer-info">
+
+        <span>
+          MLR
+          ${formatPercent(
+            result.mlrPercent,
+            3
+          )}
+        </span>
+
+        <span>
+          วงเงิน
+          ${formatMoney(
+            result.loanAmount
+          )}
+          บาท
+        </span>
+
+        <span>
+          ประกัน
+          ${formatMoney(
+            result.insuranceAmount
+          )}
+          บาท
+        </span>
+
+      </div>
+
+
+      <div class="offer-table-wrap">
+
+        <table class="offer-table">
+
+          <thead>
+
+            <tr>
+
+              <th>
+                ช่วงเดือน
+              </th>
+
+              <th>
+                อัตราดอกเบี้ยที่ลูกค้าได้รับ
+              </th>
+
+              <th>
+                ดอกเบี้ยจริง
+              </th>
+
+              <th>
+                ยอดผ่อน / เดือน
+              </th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+
+            ${rows}
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+
+    </article>
+
+  `;
+
+}
+
+
+
+/* =====================================================
+   INPUT HELPERS
+===================================================== */
+
+function bindEnterKeys() {
+
+  document
+    .getElementById(
+      'insuranceAmount'
+    )
+    .addEventListener(
+      'change',
+      function() {
+        hideError();
+      }
+    );
+
+
+  [
+    'loanAmount'
+  ]
+    .forEach(
+      function(id) {
+
+        document
+          .getElementById(
+            id
+          )
+          .addEventListener(
+            'keydown',
+            function(event) {
+
+              if (
+                event.key ===
+                'Enter'
+              ) {
+
+                calculateNow();
+
+              }
+
+            }
+          );
+
+      }
+    );
+
+}
+
+
+function formatMoneyInput(
+  input
+) {
+
+  const digits =
+    String(
+      input.value ||
+      ''
+    )
+      .replace(
+        /[^\d]/g,
+        ''
+      );
+
+
+  if (!digits) {
+
+    input.value =
+      '';
+
+    return;
+
+  }
+
+
+  input.value =
+    Number(
+      digits
+    )
+      .toLocaleString(
+        'en-US'
+      );
+
+}
+
+
+function parseMoney(
+  value
+) {
+
+  const n =
+    Number(
+      String(
+        value ||
+        ''
+      )
+        .replace(
+          /,/g,
+          ''
+        )
+        .replace(
+          /[^\d.-]/g,
+          ''
+        )
+    );
+
+
+  return Number.isFinite(
+    n
+  )
+    ? n
+    : 0;
+
+}
+
+
+function formatMoney(
+  value
+) {
+
+  return new Intl
+    .NumberFormat(
+      'en-US',
+      {
+        maximumFractionDigits:
+          0
+      }
+    )
+    .format(
+      Number(
+        value ||
+        0
+      )
+    );
+
+}
+
+
+function formatPercent(
+  value,
+  digits
+) {
+
+  return Number(
+    value ||
+    0
+  )
+    .toFixed(
+      digits == null
+        ? 3
+        : digits
+    ) +
+    '%';
+
+}
+
+
+
+/* =====================================================
+   UI HELPERS
+===================================================== */
+
+function setText(
+  id,
+  value
+) {
+
+  const el =
+    document
+      .getElementById(
+        id
+      );
+
+
+  if (el) {
+    el.textContent =
+      value;
+  }
+
+}
+
+
+function showError(
+  message
+) {
+
+  const box =
+    document
+      .getElementById(
+        'errorBox'
+      );
+
+
+  box.textContent =
+    message;
+
+
+  box.classList
+    .remove(
+      'hidden'
+    );
+
+}
+
+
+function hideError() {
+
+  document
+    .getElementById(
+      'errorBox'
+    )
+    .classList
+    .add(
+      'hidden'
+    );
+
+}
+
+
+function setLoading(
+  show
+) {
+
+  document
+    .getElementById(
+      'loadingOverlay'
+    )
+    .style
+    .display =
+      show
+        ? 'flex'
+        : 'none';
+
+}
+
+
+function getErrorMessage(
+  error
+) {
+
+  if (!error) {
+    return 'เกิดข้อผิดพลาด';
+  }
+
+
+  if (
+    error.message
+  ) {
+
+    return String(
+      error.message
+    )
+      .replace(
+        /^Exception:\s*/,
+        ''
+      );
+
+  }
+
+
+  return String(
+    error
+  );
+
+}
+
+
+function escapeHtml(
+  value
+) {
+
+  return String(
+    value == null
+      ? ''
+      : value
+  )
+    .replace(
+      /&/g,
+      '&amp;'
+    )
+    .replace(
+      /</g,
+      '&lt;'
+    )
+    .replace(
+      />/g,
+      '&gt;'
+    )
+    .replace(
+      /"/g,
+      '&quot;'
+    )
+    .replace(
+      /'/g,
+      '&#039;'
+    );
+
+}
+
+</script>
+
+
+</body>
+
+</html>
